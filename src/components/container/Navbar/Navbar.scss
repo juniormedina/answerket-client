@@ -1,0 +1,58 @@
+#navbar {
+  width: 100%;
+  height: 60px;
+  background: white;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.25);
+  position: relative;
+  display: grid;
+  grid-column: 1fr 1fr;
+
+  #logo {
+    grid-column: 1 / 2;
+    font-size: 2.5rem;
+    height: fit-content;
+    width: fit-content;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 16px;
+  }
+
+  #links {
+    grid-column: 2 / 3;
+    text-align: right;
+    position: relative;
+
+    ul {
+      height: fit-content;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      padding-left: 0;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+    
+    li {
+      display: inline-block;
+      list-style: none;
+      margin-right: 16px;
+
+      a {
+        padding: 4px;
+      }
+
+      :hover {
+        box-shadow: 0 0 0 1px #00b8d4;
+      }
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: #3d3d3d;
+  }
+}
