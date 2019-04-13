@@ -1,0 +1,32 @@
+#notification-box {
+  width: 80%;
+  height: 40px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  top: 72px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1s;
+
+  span {
+    height: fit-content;
+    font-size: 1.2rem;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+}
+
+.nb-success {
+  background: rgb(83, 163, 83);
+}
+.nb-error {
+  background: rgb(202, 75, 75);
+}

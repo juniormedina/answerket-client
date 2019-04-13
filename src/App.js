@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import Navbar from "./components/container/Navbar";
-import Notifications from "./components/container/Notifications";
+import Notification from "./components/container/Notification";
 import Landing from "./components/container/Landing";
 import Signup from "./components/container/Signup";
 import Login from "./components/container/Login";
@@ -33,7 +33,7 @@ class App extends Component {
       <BrowserRouter>
         <Fragment>
           <Navbar />
-          <Notifications />
+          <Notification />
           <Switch>
             <Route exact path="/" render={() => this.authWall(Landing)} />
             <Route exact path="/login" render={() => this.authWall(Login)} />

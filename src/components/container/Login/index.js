@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LoginForm from '../../presentational/Login/Form';
 
-import './Login.scss';
 import * as actions from '../../../actions';
 
 class Login extends Component {
@@ -29,6 +28,7 @@ class Login extends Component {
     
     // Dispatches action
     actions.login(username, password, this.props.history);
+    // TODO lock submit button until response recieved
   };
 }
 
