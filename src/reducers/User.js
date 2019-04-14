@@ -7,7 +7,7 @@ const initialState = {
     message: '',
     isSuccessful: false
   },
-  username: null,
+  company: null,
   tickets: []
 };
 
@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
         action.history.push('/dashboard');
         return {
           ...state,
-          username: action.payload.data.username,
+          company: action.payload.data.company,
           tickets: action.payload.data.tickets
         };
       }
@@ -32,7 +32,7 @@ export default (state = initialState, action) => {
         action.history.push('/dashboard');
         return {
           ...state,
-          username: action.payload.data.username,
+          company: action.payload.data.company,
           tickets: action.payload.data.tickets
         };
       } else {

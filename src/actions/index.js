@@ -8,10 +8,10 @@ export const fetchUser = history => async dispatch =>
     history
   });
 
-export const signup = (username, password, history) => async dispatch =>
+export const signup = (username, company, password, history) => async dispatch =>
   dispatch({
     type: actionTypes.SIGNUP,
-    payload: await axios.post('/api/signup', { username, password }),
+    payload: await axios.post('/api/signup', { username, company, password }),
     history
   });
 
