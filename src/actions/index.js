@@ -1,10 +1,11 @@
 import axios from 'axios';
 import actionTypes from './types';
 
-export const fetchUser = () => async dispatch =>
+export const fetchUser = history => async dispatch =>
   dispatch({
     type: actionTypes.FETCH_USER,
-    payload: await axios.get('/api/fetch_user')
+    payload: await axios.get('/api/fetch_user'),
+    history
   });
 
 export const signup = (username, password, history) => async dispatch =>

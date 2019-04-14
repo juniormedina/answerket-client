@@ -9,20 +9,25 @@ import Login from "./components/container/Login";
 import Dashboard from "./components/container/Dashboard";
 import ErrorPage from './components/presentational/Pages/Error';
 import NotFoundPage from './components/presentational/Pages/NotFound';
-
+import * as actions from './actions';
 
 class App extends Component {
+
+  componentDidMount(){
+    actions.fetchUser(this.props.history);
+  }
+
   // Redirects user to login page if attempting to access dashboard while not being authenticated
   authWall = component => {
     switch (component) {
       case Landing:
-        return this.props.isAuthenticated ? <Dashboard /> : <Landing />;
+        return this.props.username ? <Dashboard /> : <Landing />;
       case Signup:
-        return this.props.isAuthenticated ? <Dashboard /> : <Signup />;
+        return this.props.username ? <Dashboard /> : <Signup />;
       case Login:
-        return this.props.isAuthenticated ? <Dashboard /> : <Login />;
+        return this.props.username ? <Dashboard /> : <Login />;
       case Dashboard:
-        return this.props.isAuthenticated ? <Dashboard /> : <Login />;
+        return this.props.username ? <Dashboard /> : <Login />;
       default:
         return <ErrorPage />
     }
@@ -47,10 +52,10 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ isAuthenticated }) => {
-  return { isAuthenticated };
+const mapStateToProps = ({ username }) => {
+  return { username };
 };
 
 export default connect(
-  mapStateToProps
+  mapStateToProps, actions
 )(App);
