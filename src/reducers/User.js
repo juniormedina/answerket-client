@@ -7,15 +7,52 @@ const initialState = {
     message: '',
     isSuccessful: false
   },
-  company: null,
-  tickets: []
+  company: 'Cool Company Name',
+  tickets: [
+    {
+      status: 0,
+      number: 231,
+      inquirer: 'Sarah Doe',
+      subject: 'I cant find the cancel subscription button.',
+      messages: [
+        {
+          fromInquirer: true,
+          message:
+            "I tried looking everywhere and I can't seem to find it. Hoping to get a response soon, as my subscription is about to renew",
+          date: "Apr 10 2019",
+          time: "10:45pm EST"
+        }
+      ]
+    },
+    {
+      status: 1,
+      number: 230,
+      inquirer: 'John Smith',
+      subject: 'Account Upgrade',
+      messages: [
+        {
+          fromInquirer: true,
+          message:
+            "Hello, I want to upgrade my accounts vip status.",
+          date: "Apr 9 2019",
+          time: "02:12pm EST"
+        },
+        {
+          fromInquirer: true,
+          message:
+            "Hello and thank you for contacting us, can you please send us your account number and associated home address.",
+          date: "Apr 9 2019",
+          time: "03:10pm EST"
+        }
+      ]
+    }
+  ]
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-
     case actionTypes.FETCH_USER:
-      if(action.payload.data.isSuccessful){
+      if (action.payload.data.isSuccessful) {
         // Redirects to dashboard
         action.history.push('/dashboard');
         return {

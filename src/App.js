@@ -21,13 +21,13 @@ class App extends Component {
   authWall = component => {
     switch (component) {
       case Landing:
-        return this.props.username ? <Dashboard /> : <Landing />;
+        return this.props.company ? <Dashboard /> : <Landing />;
       case Signup:
-        return this.props.username ? <Dashboard /> : <Signup />;
+        return this.props.company ? <Dashboard /> : <Signup />;
       case Login:
-        return this.props.username ? <Dashboard /> : <Login />;
+        return this.props.company ? <Dashboard /> : <Login />;
       case Dashboard:
-        return this.props.username ? <Dashboard /> : <Login />;
+        return this.props.company ? <Dashboard /> : <Login />;
       default:
         return <ErrorPage />
     }
@@ -52,8 +52,8 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ username }) => {
-  return { username };
+const mapStateToProps = ({ company }) => {
+  return { company };
 };
 
 export default connect(
