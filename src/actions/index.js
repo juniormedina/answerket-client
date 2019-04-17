@@ -8,7 +8,12 @@ export const fetchUser = history => async dispatch =>
     history
   });
 
-export const signup = (username, company, password, history) => async dispatch =>
+export const signup = (
+  username,
+  company,
+  password,
+  history
+) => async dispatch =>
   dispatch({
     type: actionTypes.SIGNUP,
     payload: await axios.post('/api/signup', { username, company, password }),
@@ -22,16 +27,28 @@ export const login = (username, password, history) => async dispatch =>
     history
   });
 
-  export const setNotification = (message, isSuccessful = false) => {
-    return {
-      type: actionTypes.SET_NOTIFICATION,
-      payload: { message, isSuccessful}
-    };
-  }
+export const setNotification = (message, isSuccessful = false) => {
+  return {
+    type: actionTypes.SET_NOTIFICATION,
+    payload: { message, isSuccessful }
+  };
+};
 
 export const clearNotification = () => {
   return {
     type: actionTypes.CLEAR_NOTIFICATION,
     payload: null
   };
-}
+};
+
+export const ticketSend = (message, ticketIndex) => async dispatch =>
+  dispatch({
+    type: actionTypes.TICKET_SEND,
+    payload: await axios.post('/api/ticket_send', { message, ticketIndex })
+  });
+
+export const ticketClose = ticketIndex => async dispatch =>
+  dispatch({
+    type: actionTypes.TICKET_CLOSE,
+    payload: await axios.post('/api/ticket_close', { ticketIndex })
+  });

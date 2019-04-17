@@ -3,10 +3,13 @@ import { connect } from 'react-redux';
 import View from '../../presentational/Dashboard';
 import Ticket from '../../presentational/Dashboard/Ticket';
 import TicketPreview from '../../presentational/Dashboard/Ticket/Preview';
+import ChatMessage from '../../presentational/Dashboard/Ticket/Chat/Message';
+import * as actions from '../../../actions';
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
+    this.chatBoxRef = React.createRef();
     this.views = {
       PREVIEW: 0,
       TICKET: 1
@@ -37,16 +40,64 @@ class Dashboard extends Component {
   }
 
   ticketPreviewHandler = index => {
-    console.log('ticketPreviewHandler was triggered!')
-    this.setState({ currentView: this.views.TICKET, currentTicketIndex: index });
+    this.setState({
+      currentView: this.views.TICKET,
+      currentTicketIndex: index
+    });
   };
+
+  buttonTicketSendHandler = () => {
+    // Grabs text from chat box
+    let message = this.chatBoxRef.current.value;
+    // TODO: Validate message
+    if (!message) return;
+    // Dispatches message
+    actions.ticketSend(message, this.state.currentTicketIndex);
+    // Clears chat box
+    this.chatBoxRef.current.value = '';
+  };
+
+  buttonBackHandler = () => {
+    this.setState({
+      currentView: this.views.PREVIEW,
+      currentTicketIndex: null
+    });
+  };
+
+  buttonTicketCloseHandler = () => {
+    // Dispatches ticket close
+    actions.ticketClose(this.state.currentTicketIndex);
+  }
 
   renderContent() {
     switch (this.state.currentView) {
       case this.views.PREVIEW:
         return <View ticketPreviews={this.getTicketPreviews()} />;
       case this.views.TICKET:
-        return <Ticket />;
+        let ticket = this.props.tickets[this.state.currentTicketIndex];
+        let chatMessages = ticket.messages.map((message, index) => {
+          return (
+            <ChatMessage
+              key={index}
+              date={message.date}
+              time={message.time}
+              text={message.text}
+              fromInquirer={message.fromInquirer}
+            />
+          );
+        });
+        return (
+          <Ticket
+            number={ticket.number}
+            inquirer={ticket.inquirer}
+            subject={ticket.subject}
+            messages={chatMessages}
+            chatBoxRef={this.chatBoxRef}
+            buttonTicketSendHandler={this.buttonTicketSendHandler}
+            buttonBackHandler={this.buttonBackHandler}
+            buttonTicketCloseHandler={this.buttonTicketCloseHandler}
+          />
+        );
       default:
         return null;
     }
@@ -58,4 +109,7 @@ class Dashboard extends Component {
 
 const mapStateToProps = ({ tickets }) => ({ tickets });
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(
+  mapStateToProps,
+  actions
+)(Dashboard);
