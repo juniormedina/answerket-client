@@ -59,3 +59,16 @@ export const ticketClose = ticketIndex => async dispatch =>
     type: actionTypes.TICKET_CLOSE,
     payload: await axios.post('/api/ticket_close', { ticketIndex })
   });
+
+export const validateCompany = (name, number) => async dispatch =>
+dispatch({
+  type: actionTypes.VALIDATE_COMPANY,
+  payload: await axios.post('/api/validate_company', { name, number })
+});
+
+export const inquirySubmit = (name, subject, message, history) => async dispatch =>
+dispatch({
+  type: actionTypes.INQUIRY_SUBMIT,
+  payload: await axios.post('/api/validate_company', { name, subject, message }),
+  history
+});
