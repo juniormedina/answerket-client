@@ -7,7 +7,8 @@ const initialState = {
     message: '',
     isSuccessful: false
   },
-  company: 'Cool Company Name',
+  name: 'Cool Company Name',
+  number: 2476,
   tickets: [
     {
       status: 0,
@@ -58,6 +59,7 @@ export default (state = initialState, action) => {
         return {
           ...state,
           company: action.payload.data.company,
+          number: action.payload.data.number,
           tickets: action.payload.data.tickets
         };
       }
@@ -70,6 +72,7 @@ export default (state = initialState, action) => {
         return {
           ...state,
           company: action.payload.data.company,
+          number: action.payload.data.number,
           tickets: action.payload.data.tickets
         };
       } else {

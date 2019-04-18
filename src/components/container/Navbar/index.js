@@ -7,10 +7,10 @@ import './Navbar.scss';
 
 class Navbar extends Component {
   renderContent = () => {
-    return this.props.company ? (
+    return this.props.name ? (
       <ul>
         <li>
-          <span className="nav-company">{this.props.company}</span>
+          <span className="nav-company">{this.props.name} #{this.props.number}</span>
         </li>
         <li>
           <span className="nav-logout">
@@ -49,7 +49,7 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = ({ company }) => {
-  return { company };
+  return { name: company.name, number: company.number };
 };
 
 export default connect(

@@ -107,7 +107,7 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = ({ tickets }) => ({ tickets });
+const mapStateToProps = ({ company }) => ({ tickets: company.tickets });
 
 export default connect(
   mapStateToProps,

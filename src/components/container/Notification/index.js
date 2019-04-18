@@ -42,7 +42,7 @@ class Notification extends Component {
   };
 }
 
-const mapStateToProps = ({ notification }) => ({ notification });
+const mapStateToProps = ({ company }) => ({ notification: company.notification });
 
 const mapDispatchToProps = dispatch => ({
   clearNotification: () => dispatch(clearNotification())
