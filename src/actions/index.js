@@ -27,6 +27,13 @@ export const login = (username, password, history) => async dispatch =>
     history
   });
 
+  export const logout = (history) => async dispatch =>
+  dispatch({
+    type: actionTypes.LOGOUT,
+    payload: await axios.get('/api/logout'),
+    history
+  });
+
 export const setNotification = (message, isSuccessful = false) => {
   return {
     type: actionTypes.SET_NOTIFICATION,
