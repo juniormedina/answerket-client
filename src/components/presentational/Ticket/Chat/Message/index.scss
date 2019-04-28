@@ -1,0 +1,42 @@
+.message {
+  width: fit-content;
+  // max-width: 80%;
+  // min-width: 100px;
+  padding: 16px;
+  text-align: left;
+}
+
+.timestamp {
+  font-size: 0.8rem;
+}
+
+.text {
+  padding: 8px;
+  border-radius: 2px;
+}
+
+.inquirer {
+  text-align: left;
+
+  .timestamp {
+    margin-left: 6px;
+  }
+
+  .text {
+    background: #d2f0ff;
+    margin-right: 16px;
+  }
+}
+
+.company {
+  margin-left: auto;
+
+  .timestamp {
+    text-align: right;
+    margin-right: 6px;
+  }
+  .text {
+    background: #eaeaea;
+    margin-left: 16px;
+  }
+}

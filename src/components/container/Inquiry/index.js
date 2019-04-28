@@ -18,7 +18,7 @@ class Inquiry extends Component {
       ERROR: 'ERROR'
     };
     this.state = {
-      currentView: this.views.CONFIRMATION,
+      currentView: this.views.FORM,
       confirmationURL: null
     };
   }
@@ -38,7 +38,7 @@ class Inquiry extends Component {
     let message = this.inquiryMessageRef.current.value;
     if (!name || !subject || !message) return; // TODO: Notify user about missing fields
     // Submits request to server
-    let response = await axios.post('/api/inquiry_submit', {
+    let response = await axios.post('/api/submit_inquiry', {
       name,
       subject,
       message

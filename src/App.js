@@ -11,6 +11,7 @@ import ErrorPage from './components/presentational/Pages/Error';
 import NotFoundPage from './components/presentational/Pages/NotFound';
 import * as actions from './actions';
 import Inquiry from './components/container/Inquiry';
+import Ticket from './components/container/Ticket';
 
 class App extends Component {
   componentDidMount() {
@@ -52,6 +53,11 @@ class App extends Component {
               exact
               path="/t/:companyName/:companyNumber"
               component={Inquiry}
+            />
+            <Route
+              exact
+              path="/t/:companyName/:companyNumber/:confirmationURL"
+              component={Ticket}
             />
             <Route component={NotFoundPage} />
           </Switch>
