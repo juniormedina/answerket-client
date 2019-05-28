@@ -11,16 +11,16 @@ export const fetchUser = () => async dispatch =>
     payload: await axios.get('/api/fetch')
   });
 
-export const signup = (email, password, companyName) => async dispatch =>
+export const signup = (email, password, companyName) => async (dispatch) =>
   dispatch({
     type: actionTypes.SIGNUP,
-    payload: await axios.post('/api/signup', { email, password, companyName })
+    payload: await axios.post('/api/signup', { email, password, companyName})
   });
 
-export const login = (email, password) => async dispatch =>
+export const login = (email, password) => async (dispatch, getState) =>
   dispatch({
     type: actionTypes.LOGIN,
-    payload: await axios.post('/api/login', { username: email, password })
+    payload: await axios.post('/api/login', { session: getState().company.session, username: email, password })
   });
 
 export const logout = () => async dispatch =>
@@ -43,19 +43,20 @@ export const clearNotification = () => {
   };
 };
 
-export const ticketSend = (message, ticketIndex) => async dispatch =>
+export const ticketSend = (message, ticketIndex) => async (dispatch, getState) =>
   dispatch({
     type: actionTypes.TICKET_SEND,
     payload: await axios.post('/api/inquiry_message_company', {
+      session: getState().company.session,
       message,
       ticketIndex
     })
   });
 
-export const ticketClose = ticketIndex => async dispatch =>
+export const ticketClose = ticketIndex => async (dispatch, getState) =>
   dispatch({
     type: actionTypes.TICKET_CLOSE,
-    payload: await axios.post('/api/ticket_close', { ticketIndex })
+    payload: await axios.post('/api/ticket_close', { session: getState().company.session, ticketIndex })
   });
 
 export const validateCompany = (companyName, companyNumber) => async dispatch =>

@@ -10,7 +10,8 @@ const initialState = {
   },
   name: '',
   number: 0,
-  tickets: []
+  tickets: [],
+  session: null
 };
 
 export default (state = initialState, action) => {
@@ -21,7 +22,8 @@ export default (state = initialState, action) => {
           ...state,
           name: action.payload.data.name,
           number: action.payload.data.number,
-          tickets: action.payload.data.tickets
+          tickets: action.payload.data.tickets,
+          session: action.payload.data.session
         };
       }
       return state;
@@ -32,7 +34,8 @@ export default (state = initialState, action) => {
           ...state,
           name: action.payload.data.name,
           number: action.payload.data.number,
-          tickets: action.payload.data.tickets
+          tickets: action.payload.data.tickets,
+          session: action.payload.data.session
         };
       }
       return {
