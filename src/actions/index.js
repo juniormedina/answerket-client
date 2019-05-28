@@ -1,17 +1,20 @@
-import axios from 'axios';
+import Axios from 'axios';
 import actionTypes from './types';
+
+const axios =
+  process.env.NODE_ENV === 'production'
+    ? Axios.create({
+        baseURL: 'https://answerket-server.herokuapp.com'
+      })
+    : Axios;
 
 export const fetchUser = () => async dispatch =>
   dispatch({
     type: actionTypes.FETCH_USER,
-    payload: await axios.get('/api/fetch'),
+    payload: await axios.get('/api/fetch')
   });
 
-export const signup = (
-  email,
-  password,
-  companyName
-) => async dispatch =>
+export const signup = (email, password, companyName) => async dispatch =>
   dispatch({
     type: actionTypes.SIGNUP,
     payload: await axios.post('/api/signup', { email, password, companyName })
@@ -46,7 +49,10 @@ export const clearNotification = () => {
 export const ticketSend = (message, ticketIndex) => async dispatch =>
   dispatch({
     type: actionTypes.TICKET_SEND,
-    payload: await axios.post('/api/inquiry_message_company', { message, ticketIndex })
+    payload: await axios.post('/api/inquiry_message_company', {
+      message,
+      ticketIndex
+    })
   });
 
 export const ticketClose = ticketIndex => async dispatch =>
@@ -58,7 +64,10 @@ export const ticketClose = ticketIndex => async dispatch =>
 export const validateCompany = (companyName, companyNumber) => async dispatch =>
   dispatch({
     type: actionTypes.COMPANY_VALIDATE,
-    payload: await axios.post('/api/company_validate', { companyName, companyNumber })
+    payload: await axios.post('/api/company_validate', {
+      companyName,
+      companyNumber
+    })
   });
 
 // export const inquirySubmit = (
@@ -75,6 +84,7 @@ export const validateCompany = (companyName, companyNumber) => async dispatch =>
 //     })
 //   });
 
-export const clearLastAction = () => dispatch => dispatch({
-  type: actionTypes.CLEAR_LAST_ACTION
-});
+export const clearLastAction = () => dispatch =>
+  dispatch({
+    type: actionTypes.CLEAR_LAST_ACTION
+  });

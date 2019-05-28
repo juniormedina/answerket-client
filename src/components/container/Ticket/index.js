@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import TicketChat from '../../presentational/Ticket/Chat';
 import TicketError from '../../presentational/Ticket/Error';
 import ChatMessage from '../../presentational/Ticket/Chat/Message';
-import axios from 'axios';
+import Axios from 'axios';
+
+const axios =
+  process.env.NODE_ENV === 'production'
+    ? Axios.create({
+        baseURL: 'https://answerket-server.herokuapp.com'
+      })
+    : Axios;
 
 class Ticket extends Component {
   constructor(props) {
@@ -99,7 +106,7 @@ class Ticket extends Component {
     // Temporary: Reloads ticket by sending same initial request
     if (response.data.isSuccessful) {
       this.setState({
-        messages: response.data.messages,
+        messages: response.data.messages
       });
     }
     // Clears chat box
