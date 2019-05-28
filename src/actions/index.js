@@ -1,12 +1,9 @@
 import Axios from 'axios';
 import actionTypes from './types';
 
-const axios =
-  process.env.NODE_ENV === 'production'
-    ? Axios.create({
-        baseURL: 'https://answerket-server.herokuapp.com'
-      })
-    : Axios;
+const axios = Axios.create({
+  baseURL: 'https://answerket-server.herokuapp.com'
+});
 
 export const fetchUser = () => async dispatch =>
   dispatch({

@@ -4,12 +4,9 @@ import TicketError from '../../presentational/Ticket/Error';
 import ChatMessage from '../../presentational/Ticket/Chat/Message';
 import Axios from 'axios';
 
-const axios =
-  process.env.NODE_ENV === 'production'
-    ? Axios.create({
-        baseURL: 'https://answerket-server.herokuapp.com'
-      })
-    : Axios;
+const axios = Axios.create({
+  baseURL: 'https://answerket-server.herokuapp.com'
+});
 
 class Ticket extends Component {
   constructor(props) {

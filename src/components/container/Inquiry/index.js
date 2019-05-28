@@ -6,12 +6,9 @@ import InquiryConfirmation from '../../presentational/Inquiry/Confirmation';
 import InquiryError from '../../presentational/Inquiry/Error';
 import Axios from 'axios';
 
-const axios =
-  process.env.NODE_ENV === 'production'
-    ? Axios.create({
-        baseURL: 'https://answerket-server.herokuapp.com'
-      })
-    : Axios;
+const axios = Axios.create({
+  baseURL: 'https://answerket-server.herokuapp.com'
+});
 
 class Inquiry extends Component {
   constructor(props) {
