@@ -52,7 +52,7 @@ class Dashboard extends Component {
     // TODO: Validate message
     if (!message) return;
     // Dispatches message
-    actions.ticketSend(message, this.state.currentTicketIndex);
+    this.props.ticketSend(message, this.state.currentTicketIndex);
     // Clears chat box
     this.chatBoxRef.current.value = '';
   };

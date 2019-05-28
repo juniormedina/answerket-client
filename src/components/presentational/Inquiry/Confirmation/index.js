@@ -7,9 +7,10 @@ export default props => {
       <h1>Inquiry has been submitted.</h1>
       Bookmark or store the following link to be able to follow up with your
       inquiry.
-      <div id="confirmation-url" onClick={props.confirmationURLonClickHandler}>
-        {props.confirmationURL ||
-          'There was an error getting the confirmation url. Please try again later.'}
+      <div id="confirmation-url" onClick={e => props.confirmationURLonClickHandler(e)}>
+        <span ref={props.confirmationURLRef}>
+          {window.location.href + '/' + props.confirmationURL}
+        </span>
       </div>
     </div>
   );

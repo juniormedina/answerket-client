@@ -21,11 +21,12 @@ class Inquiry extends Component {
       currentView: this.views.FORM,
       confirmationURL: null
     };
+    this.confirmationURLRef = React.createRef();
   }
 
   componentDidMount() {
     // Dispatches get inquiry action
-    actions.validateCompany(
+    this.props.validateCompany(
       this.props.match.params.companyName,
       this.props.match.params.companyNumber
     );
@@ -38,7 +39,9 @@ class Inquiry extends Component {
     let message = this.inquiryMessageRef.current.value;
     if (!name || !subject || !message) return; // TODO: Notify user about missing fields
     // Submits request to server
-    let response = await axios.post('/api/submit_inquiry', {
+    let response = await axios.post('/api/inquiry_submit', {
+      companyName: this.props.match.params.companyName,
+      companyNumber: this.props.match.params.companyNumber,
       name,
       subject,
       message
@@ -93,14 +96,27 @@ class Inquiry extends Component {
     return (
       <InquiryConfirmation
         confirmationURL={this.state.confirmationURL}
+        confirmationURLRef={this.confirmationURLRef}
         confirmationURLonClickHandler={this.confirmationURLonClickHandler}
       />
     );
   };
 
   confirmationURLonClickHandler = () => {
-    this.props.history.push(this.state.confirmationURL);
-  };
+    // console.log(e)
+    // this.confirmationURLRef.current.select();
+    // document.execCommand('copy');
+    // e.target.focus();
+    navigator.clipboard
+      .writeText(window.location.href + '/' + this.state.confirmationURL)
+      .then(() => {
+        // Success!
+        alert('Copied confirmation url to clipboard');
+      })
+      .catch(err => {
+        console.log('Something went wrong', err);
+      });
+     };
 
   renderInquiryError = () => {
     return <InquiryError />;
@@ -115,4 +131,7 @@ const mapStateToProps = ({ inquirer }) => {
   return { isValidCompany: inquirer.isValidCompany };
 };
 
-export default connect(mapStateToProps)(Inquiry);
+export default connect(
+  mapStateToProps,
+  actions
+)(Inquiry);

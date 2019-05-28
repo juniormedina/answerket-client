@@ -5,7 +5,7 @@ export default props => {
   return (
     <div id="signup-form">
       <span id="title">Signup now</span>
-      <input ref={props.usernameRef} type="text" placeholder="username" />
+      <input ref={props.emailRef} type="text" placeholder="email" />
       <input ref={props.companyRef} type="text" placeholder="company" />
       <input ref={props.passwordRef} type="password" placeholder="password" />
       <input

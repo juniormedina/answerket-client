@@ -1,37 +1,32 @@
 import axios from 'axios';
 import actionTypes from './types';
 
-export const fetchUser = history => async dispatch =>
+export const fetchUser = () => async dispatch =>
   dispatch({
     type: actionTypes.FETCH_USER,
-    payload: await axios.get('/api/fetch_user'),
-    history
+    payload: await axios.get('/api/fetch'),
   });
 
 export const signup = (
-  username,
-  company,
+  email,
   password,
-  history
+  companyName
 ) => async dispatch =>
   dispatch({
     type: actionTypes.SIGNUP,
-    payload: await axios.post('/api/signup', { username, company, password }),
-    history
+    payload: await axios.post('/api/signup', { email, password, companyName })
   });
 
-export const login = (username, password, history) => async dispatch =>
+export const login = (email, password) => async dispatch =>
   dispatch({
     type: actionTypes.LOGIN,
-    payload: await axios.post('/api/login', { username, password }),
-    history
+    payload: await axios.post('/api/login', { username: email, password })
   });
 
-  export const logout = (history) => async dispatch =>
+export const logout = () => async dispatch =>
   dispatch({
     type: actionTypes.LOGOUT,
-    payload: await axios.get('/api/logout'),
-    history
+    payload: await axios.get('/api/logout')
   });
 
 export const setNotification = (message, isSuccessful = false) => {
@@ -51,7 +46,7 @@ export const clearNotification = () => {
 export const ticketSend = (message, ticketIndex) => async dispatch =>
   dispatch({
     type: actionTypes.TICKET_SEND,
-    payload: await axios.post('/api/ticket_send', { message, ticketIndex })
+    payload: await axios.post('/api/inquiry_message_company', { message, ticketIndex })
   });
 
 export const ticketClose = ticketIndex => async dispatch =>
@@ -60,15 +55,26 @@ export const ticketClose = ticketIndex => async dispatch =>
     payload: await axios.post('/api/ticket_close', { ticketIndex })
   });
 
-export const validateCompany = (name, number) => async dispatch =>
-dispatch({
-  type: actionTypes.VALIDATE_COMPANY,
-  payload: await axios.post('/api/validate_company', { name, number })
-});
+export const validateCompany = (companyName, companyNumber) => async dispatch =>
+  dispatch({
+    type: actionTypes.COMPANY_VALIDATE,
+    payload: await axios.post('/api/company_validate', { companyName, companyNumber })
+  });
 
-export const inquirySubmit = (name, subject, message, history) => async dispatch =>
-dispatch({
-  type: actionTypes.INQUIRY_SUBMIT,
-  payload: await axios.post('/api/validate_company', { name, subject, message }),
-  history
+// export const inquirySubmit = (
+//   name,
+//   subject,
+//   message
+// ) => async dispatch =>
+//   dispatch({
+//     type: actionTypes.INQUIRY_SUBMIT,
+//     payload: await axios.post('/api/validate_company', {
+//       name,
+//       subject,
+//       message
+//     })
+//   });
+
+export const clearLastAction = () => dispatch => dispatch({
+  type: actionTypes.CLEAR_LAST_ACTION
 });

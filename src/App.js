@@ -15,7 +15,7 @@ import Ticket from './components/container/Ticket';
 
 class App extends Component {
   componentDidMount() {
-    actions.fetchUser(this.props.history);
+    this.props.fetchUser();
   }
 
   // Redirects user to login page if attempting to access dashboard while not being authenticated
@@ -40,27 +40,35 @@ class App extends Component {
         <Fragment>
           <Navbar />
           <Notification />
-          <Switch>
-            <Route exact path="/" render={() => this.authWall(Landing)} />
-            <Route exact path="/login" render={() => this.authWall(Login)} />
-            <Route exact path="/signup" render={() => this.authWall(Signup)} />
-            <Route
-              exact
-              path="/dashboard"
-              render={() => this.authWall(Dashboard)}
-            />
-            <Route
-              exact
-              path="/t/:companyName/:companyNumber"
-              component={Inquiry}
-            />
-            <Route
-              exact
-              path="/t/:companyName/:companyNumber/:confirmationURL"
-              component={Ticket}
-            />
-            <Route component={NotFoundPage} />
-          </Switch>
+          {this.props.name ? (
+            <Route component={Dashboard} />
+          ) : (
+            <Switch>
+              <Route exact path="/" render={() => this.authWall(Landing)} />
+              <Route exact path="/login" render={() => this.authWall(Login)} />
+              <Route
+                exact
+                path="/signup"
+                render={() => this.authWall(Signup)}
+              />
+              <Route
+                exact
+                path="/dashboard"
+                render={() => this.authWall(Dashboard)}
+              />
+              <Route
+                exact
+                path="/t/:companyName/:companyNumber"
+                component={Inquiry}
+              />
+              <Route
+                exact
+                path="/t/:companyName/:companyNumber/:confirmationURL"
+                component={Ticket}
+              />
+              <Route component={NotFoundPage} />
+            </Switch>
+          )}
         </Fragment>
       </BrowserRouter>
     );

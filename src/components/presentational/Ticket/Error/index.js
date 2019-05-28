@@ -4,7 +4,7 @@ import './index.scss';
 export default props => {
   return (
     <div id="ticket-error">
-       Ticket does not exist. Please check your confirmation url.
+       <h2>Ticket does not exist. Please check your confirmation url.</h2>
     </div>
   );
 };

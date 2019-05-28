@@ -31,8 +31,7 @@
     }
   
     textarea {
-      width: 50%;
-      transition: all 0.4s ease;
+      width: 80%;
       word-wrap: break-word;
       border-radius: 6px;
       border: none;
@@ -44,9 +43,6 @@
   
       // width: auto;
       // white-space: nowrap; /* Thanks to Herb Caudill comment */
-    }
-    textarea:focus {
-      width: 80% !important;
     }
   }
   

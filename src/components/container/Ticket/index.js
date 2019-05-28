@@ -28,7 +28,7 @@ class Ticket extends Component {
   }
 
   getTicket = async (companyName, companyNumber, confirmationURL) => {
-    let response = await axios.post('/api/get_ticket', {
+    let response = await axios.post('/api/inquiry_fetch', {
       companyName,
       companyNumber,
       confirmationURL
@@ -89,7 +89,7 @@ class Ticket extends Component {
     // TODO: Validate message
     if (!message) return;
     // Dispatches message
-    let response = await axios.post('/api/message_ticket', {
+    let response = await axios.post('/api/inquiry_message_inquirer', {
       companyName: this.props.match.params.companyName,
       companyNumber: this.props.match.params.companyNumber,
       confirmationURL: this.props.match.params.confirmationURL,
@@ -98,7 +98,9 @@ class Ticket extends Component {
     // TODO - ...
     // Temporary: Reloads ticket by sending same initial request
     if (response.data.isSuccessful) {
-      this.getTicket();
+      this.setState({
+        messages: response.data.messages,
+      });
     }
     // Clears chat box
     this.chatBoxRef.current.value = '';

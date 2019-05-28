@@ -7,14 +7,14 @@ import * as actions from '../../../actions';
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.usernameRef = React.createRef();
+    this.emailRef = React.createRef();
     this.passwordRef = React.createRef();
   }
 
   render() {
     return (
       <LoginForm
-        usernameRef={this.usernameRef}
+        emailRef={this.emailRef}
         passwordRef={this.passwordRef}
         loginHandler={this.loginHandler}
       />
@@ -23,11 +23,11 @@ class Login extends Component {
 
   loginHandler = () => {
     // Grabs credentials
-    let username = this.usernameRef.current.value;
+    let email = this.emailRef.current.value;
     let password = this.passwordRef.current.value;
     
     // Dispatches action
-    actions.login(username, password, this.props.history);
+    this.props.login(email, password);
     // TODO lock submit button until response recieved
   };
 }

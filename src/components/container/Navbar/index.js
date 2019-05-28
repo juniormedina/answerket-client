@@ -34,7 +34,7 @@ class Navbar extends Component {
   };
   buttonLogoutHandler = () => {
     // Dispatches logout action
-    actions.logout(this.history);
+    this.props.logout();
   };
   render() {
     return (
