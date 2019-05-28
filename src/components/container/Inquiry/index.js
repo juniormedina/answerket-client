@@ -4,11 +4,11 @@ import * as actions from '../../../actions';
 import View from '../../presentational/Inquiry';
 import InquiryConfirmation from '../../presentational/Inquiry/Confirmation';
 import InquiryError from '../../presentational/Inquiry/Error';
-import Axios from 'axios';
+import axios from 'axios';
 
-const axios = Axios.create({
-  baseURL: 'https://answerket-server.herokuapp.com'
-});
+// const axios = Axios.create({
+//   baseURL: 'https://answerket-server.herokuapp.com'
+// });
 
 class Inquiry extends Component {
   constructor(props) {

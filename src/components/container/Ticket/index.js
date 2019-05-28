@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import TicketChat from '../../presentational/Ticket/Chat';
 import TicketError from '../../presentational/Ticket/Error';
 import ChatMessage from '../../presentational/Ticket/Chat/Message';
-import Axios from 'axios';
+import axios from 'axios';
 
-const axios = Axios.create({
-  baseURL: 'https://answerket-server.herokuapp.com'
-});
+// const axios = Axios.create({
+//   baseURL: 'https://answerket-server.herokuapp.com'
+// });
 
 class Ticket extends Component {
   constructor(props) {
