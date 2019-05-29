@@ -1,17 +1,37 @@
-#landing-container{
-    text-align: center;
-}
+#landing-container {
+  text-align: center;
 
-.button {
+  .button {
     width: fit-content;
-    background: white;
-    color: #3d3d3d;
+    background: #f0483e;
+    color: white;
     font-weight: 400;
     cursor: pointer;
     border: none;
-    box-shadow: 0 6px 6px rgba(0,0,0,0.25);
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.25);
     padding: 8px 16px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin-left: auto;
     margin-right: auto;
-}   
+  }
+
+  img {
+    height: 340px;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.25);
+    margin-bottom: 16px;
+    border: solid 4px white; 
+  }
+
+  .sub-header {
+      display: block;
+      font-size: 1.6rem;
+      padding: 0px 0px;
+      margin-bottom: 16px;
+  }
+  .sub-text {
+      display: block;
+      font-size: 1.2rem;
+      padding: 0px 0px;
+      margin-bottom: 16px;
+  }
+}
